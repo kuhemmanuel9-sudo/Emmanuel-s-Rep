@@ -3139,20 +3139,25 @@ if (nrow(t37) > 0) {
 # ------------------------------------------------------------------------------
 # 6. Save Analysis Data
 # ------------------------------------------------------------------------------
-
 section("Saving Analysis Data")
-
-df_stata <- df %>%
-  mutate(across(where(is.factor), as.character))
-
-df_couples_stata <- df_couples_full %>%
-  mutate(across(where(is.factor), as.character))
 
 saveRDS(df, file.path(DATA_DIR, "df_r9_r14_analysis.rds"))
 saveRDS(df_bw, file.path(DATA_DIR, "df_r9_r14_rd_bandwidth_analysis.rds"))
 saveRDS(df_couples_full, file.path(DATA_DIR, "df_couples_r9_r14_analysis.rds"))
 
-df_bw_stata <- df_bw %>%
+stata_clean <- function(x) {
+  x %>%
+    mutate(across(where(is.factor), as.character)) %>%
+    rename(
+      mcare_pub_prem_nm = medicare_public_premium_nonmissing,
+      no_mcare_rx_hmo = no_observed_medicare_drug_or_hmo_premium
+    )
+}
+
+df_stata <- stata_clean(df)
+df_bw_stata <- stata_clean(df_bw)
+
+df_couples_stata <- df_couples_full %>%
   mutate(across(where(is.factor), as.character))
 
 write_dta(df_stata, file.path(DATA_DIR, "df_r9_r14_analysis.dta"))
@@ -3163,7 +3168,3 @@ cat(glue("Saved main analysis data: {nrow(df)} rows x {ncol(df)} columns\n"))
 cat(glue("Saved results to: {OUTPUT_DIR}\n"))
 
 section("Complete")
-
-# ==============================================================================
-# End of script
-# ==============================================================================
