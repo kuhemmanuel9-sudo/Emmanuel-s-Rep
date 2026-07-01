@@ -1,0 +1,10 @@
+
+tidyverse
+haven
+rdrobust
+rddensity
+fixest
+ggplot2
+ggtext
+glue
+scales
