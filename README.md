@@ -11,28 +11,20 @@ A **Fuzzy Regression Discontinuity Design (RDD)** is used to exploit the sharp i
 
 ## Research Question
 
-**What is the causal impact of Medicare eligibility and Medicare coverage on mental health and financial outcomes among older Americans?**
+How does Medicare eligibility at age 65 affect mental health, financial protection, healthcare expenditures, labor-market outcomes, and household well-being among older Americans? In addition, does Medicare generate measurable spillover effects on spouses and other household members?
 
 ---
 
-## Dataset
 
-**Source**
+## Dataset
 
 - RAND Health and Retirement Study (HRS)
 - Waves 9–14 (2008–2018)
+- **32,894 person-wave observations**
 
-The RAND HRS is a nationally representative longitudinal survey of Americans over age 50 containing detailed information on:
+The RAND HRS contains nationally representative longitudinal information on health, insurance, employment, retirement, healthcare expenditures, income, wealth, and mental health.
 
-- Health
-- Insurance
-- Employment
-- Income
-- Wealth
-- Mental health
-- Healthcare expenditures
-
-**Note:** RAND HRS data are subject to licensing restrictions and are **not included** in this repository.
+> **Note:** The RAND HRS data are proprietary and are not included in this repository.
 
 ---
 
@@ -78,6 +70,18 @@ The RAND HRS is a nationally representative longitudinal survey of Americans ove
 - Loneliness
 - Positive Affect
 - Negative Affect
+
+- 
+## Household Spillovers
+
+In addition to estimating direct treatment effects, the project examines whether Medicare eligibility affects spouses and households through:
+- Household depression outcomes
+- Spousal mental health
+- Labor-market spillovers
+- Insurance composition
+
+Results suggest that Medicare's benefits are concentrated primarily on the Medicare-eligible individual, with limited evidence of statistically significant household spillover effects.
+
 
 ### Financial Protection
 
@@ -209,13 +213,26 @@ source("analysis/medicare_mental_health_pub_ready.R")
 ```
 
 
+## Key Findings
+
+The analysis finds that Medicare eligibility:
+
+- Improves mental health.
+- Reduces depressive symptoms.
+- Lowers out-of-pocket healthcare spending.
+- Reduces private insurance premium burdens.
+- Produces heterogeneous effects across demographic and employment groups.
+- Shows particularly large mental health improvements among respondents working **30–40 hours per week**.
+
+
 ## Key Contributions
 
-- Estimates the causal effect of Medicare eligibility using a Fuzzy RDD framework.
-- Examines mental health, healthcare spending, labor-market outcomes, and financial protection.
-- Includes extensive robustness and heterogeneity analyses.
-- Produces publication-ready tables and figures suitable for academic research.
-
+- Estimates the causal effect of Medicare eligibility on mental health using a **Fuzzy Regression Discontinuity Design (RDD)** and Instrumental Variables framework with nationally representative longitudinal data from the RAND Health and Retirement Study.
+- Integrates mental health, healthcare expenditures, insurance transitions, labor-market outcomes, financial protection, and household well-being into a unified causal analysis rather than examining these outcomes separately.
+- Extends the analysis with comprehensive robustness checks, including placebo cutoffs, bandwidth sensitivity, donut-hole estimators, survey-weighted estimation, panel fixed-effects models, and multiple subgroup analyses.
+- Investigates heterogeneous treatment effects across demographic, socioeconomic, health, and employment groups, identifying substantially larger mental health improvements among individuals working **30–40 hours per week**.
+- Examines household and spousal spillover effects to evaluate whether Medicare's benefits extend beyond the directly eligible individual.
+- Produces a fully reproducible, publication-ready research pipeline that automatically generates regression tables, robustness analyses, and publication-quality figures.
 
 
 ## Author
