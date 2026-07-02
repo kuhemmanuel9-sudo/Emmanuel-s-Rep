@@ -71,7 +71,6 @@ The RAND HRS contains nationally representative longitudinal information on heal
 - Positive Affect
 - Negative Affect
 
-- 
 ## Household Spillovers
 
 In addition to estimating direct treatment effects, the project examines whether Medicare eligibility affects spouses and households through:
