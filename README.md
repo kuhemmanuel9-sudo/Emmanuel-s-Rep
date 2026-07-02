@@ -1,5 +1,5 @@
 
-# Medicare Eligibility and Mental Health: A Fuzzy Regression Discontinuity Analysis
+# Medicare and Mental Health:Causal Evidence From a Fuzzy Regression Discontinuity Design
 
 ## Overview
 
