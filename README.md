@@ -238,7 +238,7 @@ The analysis finds that Medicare eligibility:
 
 Emmanuel Kuh
 
-M.S. Econometrics & Quantitative Economics  
+M.S. Economic Analytics (Econometrics & Quantitative Economics) 
 Towson University
 
 **LinkedIn:** https://www.linkedin.com/in/emmanuel-kuh45
