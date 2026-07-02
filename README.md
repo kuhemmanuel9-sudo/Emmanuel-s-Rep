@@ -224,14 +224,23 @@ The analysis finds that Medicare eligibility:
 - Shows particularly large mental health improvements among respondents working **30–40 hours per week**.
 
 
-## Key Contributions
+**Key Contributions**
 
-- Estimates the causal effect of Medicare eligibility on mental health using a **Fuzzy Regression Discontinuity Design (RDD)** and Instrumental Variables framework with nationally representative longitudinal data from the RAND Health and Retirement Study.
-- Integrates mental health, healthcare expenditures, insurance transitions, labor-market outcomes, financial protection, and household well-being into a unified causal analysis rather than examining these outcomes separately.
-- Extends the analysis with comprehensive robustness checks, including placebo cutoffs, bandwidth sensitivity, donut-hole estimators, survey-weighted estimation, panel fixed-effects models, and multiple subgroup analyses.
-- Investigates heterogeneous treatment effects across demographic, socioeconomic, health, and employment groups, identifying substantially larger mental health improvements among individuals working **30–40 hours per week**.
-- Examines household and spousal spillover effects to evaluate whether Medicare's benefits extend beyond the directly eligible individual.
-- Produces a fully reproducible, publication-ready research pipeline that automatically generates regression tables, robustness analyses, and publication-quality figures.
+* Estimates the **causal effect of Medicare eligibility on mental health** using a Fuzzy Regression Discontinuity (RD) design and instrumental variables framework applied to nationally representative longitudinal data from the RAND Health and Retirement Study (HRS).
+
+* Demonstrates that **financial protection is the primary mechanism** through which Medicare improves mental health by jointly examining changes in insurance coverage, out-of-pocket medical spending, insurance premiums, income, labor-market outcomes, and household financial well-being within a unified empirical framework.
+
+* Provides one of the most comprehensive evaluations of Medicare's broader impacts by integrating mental health, healthcare expenditures, insurance transitions, labor-market behavior, and household outcomes rather than studying these domains independently.
+
+* Documents substantial heterogeneity in Medicare's mental health effects, identifying **significantly larger improvements among individuals working 30–40 hours per week**, suggesting that the psychological benefits of Medicare are concentrated among standard full-time workers rather than being uniformly distributed across beneficiaries.
+
+* Shows that **individuals with elevated depressive symptoms prior to age 65 experience the largest mental health gains from Medicare**, indicating that the program delivers its greatest benefits to those with the highest baseline psychological vulnerability.
+
+* Strengthens the credibility of the causal findings through extensive validation and robustness analyses, including placebo cutoff tests, bandwidth sensitivity analyses, donut-hole specifications, density tests, survey-weighted estimation, panel fixed-effects models, and multiple subgroup analyses.
+
+* Examines household and spousal spillover effects to assess whether Medicare's benefits extend beyond the directly eligible individual, providing evidence on the broader household consequences of public health insurance.
+
+* Develops a fully reproducible, publication-ready empirical workflow that automatically generates regression tables, robustness analyses, and publication-quality figures, enhancing transparency and facilitating replication and future research.
 
 
 ## Author
