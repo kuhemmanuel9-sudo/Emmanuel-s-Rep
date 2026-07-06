@@ -3,7 +3,7 @@
 # Fuzzy Regression Discontinuity Analysis
 # RAND HRS, Waves 9-14 (2008-2018)
 #
-# Publication-ready, GitHub-ready replication script
+# GitHub script
 # ==============================================================================
 #
 # Purpose:
