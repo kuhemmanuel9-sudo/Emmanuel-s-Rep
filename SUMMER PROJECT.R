@@ -1775,16 +1775,14 @@ write_table(t37, "table_37_pre65_mental_health_index_heterogeneity.csv")
 print(t37, n = Inf)
 
 # ------------------------------------------------------------------------------
-# 4B. Survey Weights and Medicaid Robustness
+# 4B. Additional Robustness Analyses
 # ------------------------------------------------------------------------------
 
 section("Survey Weights and Medicaid Robustness")
 
-# This section keeps the same RD design and adds the checks requested for Week 4:
-#   1. survey-weighted version of the preferred main RD specification
-#   2. excluding Medicaid recipients
-#   3. excluding lower-income respondents
-#   4. excluding both Medicaid recipients and lower-income respondents
+# These robustness checks keep the same RD design and assess whether the main
+# findings are sensitive to survey weighting, Medicaid participation, and
+# alternative income-based sample restrictions.
 #
 # The preferred main specification remains the unweighted fuzzy RD.
 # The weighted estimates use the general respondent weight, not the Leave-Behind
@@ -1938,7 +1936,7 @@ make_weighted_rd_table <- function(data, specs, sample_label,
 
 section("Table 26: Survey-Weighted Main RD Estimates")
 
-week4_specs <- tribble(
+robustness_specs <- tribble(
   ~var, ~label,
   "cesd", "CES-D",
   "depyr", "Depressed in past year",
@@ -1955,7 +1953,7 @@ t26 <- bind_rows(
   ),
   make_weighted_rd_table(
     df_bw,
-    week4_specs,
+    robustness_specs,
     "Survey-weighted main RD sample",
     include_fuzzy = TRUE
   ) %>%
@@ -1977,7 +1975,7 @@ t27_counts <- tibble(
 
 t27 <- make_rd_table(
   df_no_medicaid,
-  week4_specs,
+  robustness_specs,
   "Excluding Medicaid recipients",
   include_fuzzy = TRUE
 )
@@ -2008,7 +2006,7 @@ t28_counts <- tibble(
 
 t28 <- make_rd_table(
   df_above_q25_income,
-  week4_specs,
+  robustness_specs,
   "Above 25th percentile income",
   include_fuzzy = TRUE
 )
@@ -2035,7 +2033,7 @@ t29_counts <- tibble(
 
 t29 <- make_rd_table(
   df_no_medicaid_above_q25,
-  week4_specs,
+  robustness_specs,
   "No Medicaid + above 25th percentile income",
   include_fuzzy = TRUE
 )
@@ -2043,9 +2041,9 @@ t29 <- make_rd_table(
 write_table(t29_counts, "table_29a_no_medicaid_above_q25_sample_counts.csv")
 write_table(t29, "table_29_no_medicaid_above_q25_rd.csv")
 
-section("Table 30: Compact Week 4 Comparison")
+section("Table 30: Robustness Comparison")
 
-extract_week4_core <- function(tab, spec_name) {
+extract_core_results <- function(tab, spec_name) {
   tab %>%
     filter(
       outcome %in% c("CES-D", "Mental Health Index", "OOP spending"),
@@ -2061,16 +2059,16 @@ extract_week4_core <- function(tab, spec_name) {
 }
 
 t30 <- bind_rows(
-  extract_week4_core(t02, "Unweighted main RD"),
-  extract_week4_core(t26, "Survey-weighted main RD"),
-  extract_week4_core(t27, "Excluding Medicaid recipients"),
-  extract_week4_core(t28, "Above 25th percentile income"),
-  extract_week4_core(t29, "No Medicaid + above 25th percentile income")
+  extract_core_results(t02, "Unweighted main RD"),
+  extract_core_results(t26, "Survey-weighted main RD"),
+  extract_core_results(t27, "Excluding Medicaid recipients"),
+  extract_core_results(t28, "Above 25th percentile income"),
+  extract_core_results(t29, "No Medicaid + above 25th percentile income")
 )
 
-write_table(t30, "table_30_week4_comparison.csv")
+write_table(t30, "table_30_robustness_comparison.csv")
 
-section("Figure 36: Week 4 Robustness Comparison")
+section("Figure 36: Robustness Comparison")
 
 t30_plot <- t30 %>%
   filter(outcome %in% c("CES-D", "Mental Health Index")) %>%
@@ -2092,7 +2090,7 @@ t30_plot <- t30 %>%
     )
   )
 
-p_week4 <- ggplot(
+p_robustness <- ggplot(
   t30_plot,
   aes(x = estimate, y = specification, color = outcome)
 ) +
@@ -2113,22 +2111,22 @@ p_week4 <- ggplot(
     name = "Outcome"
   ) +
   labs(
-    title = "**Figure 36.** Week 4 Robustness Checks",
-    subtitle = "Survey weighting, Medicaid exclusion, and income-restriction checks",
+    title = "**Figure 36.** Robustness Comparison",
+    subtitle = "Survey weighting, Medicaid exclusion, and alternative income-based sample restrictions",
     x = "Estimated effect",
     y = NULL,
-    caption = "Notes: Points are estimates; bars show 95% confidence intervals. Medicaid and income checks preserve the original RD structure."
+    caption = "Notes: Points are estimates; bars show 95% confidence intervals. All checks preserve the original RD structure."
   ) +
   theme_pub()
 
 save_figure(
-  p_week4,
-  "figure_36_week4_robustness_comparison.png",
+  p_robustness,
+  "figure_36_robustness_comparison.png",
   width = 11,
   height = 6.5
 )
 
-week4_notes <- c(
+robustness_notes <- c(
   "Survey weights and Medicaid robustness checks",
   "",
   "This section keeps the original fuzzy RD design and reruns the preferred main specification under three additional checks.",
@@ -2158,8 +2156,8 @@ week4_notes <- c(
 )
 
 writeLines(
-  week4_notes,
-  con = file.path(TABLE_DIR, "week4_interpretation_notes.txt")
+  robustness_notes,
+  con = file.path(TABLE_DIR, "robustness_interpretation_notes.txt")
 )
 
 # ------------------------------------------------------------------------------
