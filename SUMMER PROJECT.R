@@ -3134,16 +3134,15 @@ if (nrow(t37) > 0) {
   save_figure(p_pre65_mhi, "figure_41_pre65_mental_health_index_heterogeneity.png", 11, 7)
 }
 
-# ------------------------------------------------------------------------------
 # 6. Save Analysis Data
-# ------------------------------------------------------------------------------
+
 section("Saving Analysis Data")
 
 saveRDS(df, file.path(DATA_DIR, "df_r9_r14_analysis.rds"))
 saveRDS(df_bw, file.path(DATA_DIR, "df_r9_r14_rd_bandwidth_analysis.rds"))
 saveRDS(df_couples_full, file.path(DATA_DIR, "df_couples_r9_r14_analysis.rds"))
 
-stata_clean <- function(x) {
+make_stata_safe <- function(x) {
   x %>%
     mutate(across(where(is.factor), as.character)) %>%
     rename(
@@ -3152,8 +3151,8 @@ stata_clean <- function(x) {
     )
 }
 
-df_stata <- stata_clean(df)
-df_bw_stata <- stata_clean(df_bw)
+df_stata <- make_stata_safe(df)
+df_bw_stata <- make_stata_safe(df_bw)
 
 df_couples_stata <- df_couples_full %>%
   mutate(across(where(is.factor), as.character))
