@@ -1312,6 +1312,21 @@ t18 <- bind_rows(
            estimand = "Fuzzy RD LATE, couple sample")
 )
 write_table(t18, "table_18_household_depression_couple_sample.csv")
+# Spouse CES-D RD estimates
+t18_cesd <- bind_rows(
+  rd_reduced_form(df_couples_rd, "s_cesd", "Spouse CES-D",
+                  estimand = "Reduced form, spouse CES-D"),
+  rd_fuzzy(df_couples_rd, "s_cesd", "Spouse CES-D",
+           estimand = "Fuzzy RD LATE, spouse CES-D")
+)
+write_table(t18_cesd, "table_18_spouse_cesd_rd.csv")
+
+# Combine household depression and spouse CES-D into one table
+t18_combined <- bind_rows(
+  t18,
+  t18_cesd
+)
+write_table(t18_combined, "table_18_household_spillovers_combined.csv")
 
 t19 <- bind_rows(
   rd_reduced_form(df_couples_rd %>% filter(both_working == 1), "i_cesd", "Respondent and spouse both working",
